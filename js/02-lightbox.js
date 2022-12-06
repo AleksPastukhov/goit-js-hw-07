@@ -31,5 +31,17 @@ function onImageOfGalleryClick(evt) {
     captionDelay: 250,
   };
 
-  let gallerySet = new SimpleLightbox('.gallery a', { options });
+  let gallerySet = new SimpleLightbox('.gallery a', options);
+
+  gallerySet.on('show.simplelightbox', function () {
+    galleryBox.addEventListener('keydown', onKeyEscpPress);
+  });
+
+  gallerySet.on('error.simplelightbox', function (e) {
+    console.log(e); // some usefull information
+  });
+
+  function onKeyEscpPress(evt) {
+    console.log(evt.code);
+  }
 }
