@@ -26,7 +26,10 @@ function onImageOfGalleryClick(evt) {
   if (!evt.target.classList.contains('gallery__image')) {
     return;
   }
+  const options = {
+    captionsData: 'alt',
+    captionDelay: 250,
+  };
 
-  let gallerySet = new SimpleLightbox('.gallery a');
-  gallerySet.on('show.simplelightbox', function () {});
+  let gallerySet = new SimpleLightbox('.gallery a', { options });
 }
