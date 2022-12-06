@@ -33,6 +33,22 @@ function onImageOfGalleryClick(evt) {
     return;
   }
   const originalImage = evt.target.dataset.source;
+  const options = {
+    onShow: () => {
+      window.addEventListener('keydown', onKeyEscpPress);
+    },
+    onClose: () => {
+      window.removeEventListener('keydown', onKeyEscpPress);
+    },
+  };
 
-  basicLightbox.create(`<img src="${originalImage}"/>`).show();
+  const instance = basicLightbox.create(`<img src="${originalImage}"/>`, options);
+  instance.show();
+
+  function onKeyEscpPress(evt) {
+    if (evt.code !== 'Escape') {
+      return;
+    }
+    instance.close();
+  }
 }
